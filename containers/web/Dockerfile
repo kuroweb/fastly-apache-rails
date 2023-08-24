@@ -24,10 +24,10 @@ RUN npm i -g n && n 18.4.0
 WORKDIR /app
 
 # gem
-COPY ../web/Gemfile* .
+COPY ../volumes/web/Gemfile* .
 RUN bundle install
 
 # node_modules
-COPY ../web/package.json .
-COPY ../web/package-lock.json .
+COPY ../volumes/web/package.json .
+COPY ../volumes/web/package-lock.json .
 RUN npm i
