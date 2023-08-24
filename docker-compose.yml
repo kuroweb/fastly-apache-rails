@@ -27,6 +27,15 @@ services:
         rails s -b 0.0.0.0 -p 3000
       "
 
+  apache:
+    build:
+      context: .
+      dockerfile: containers/apache/Dockerfile
+    ports:
+      - 80:80
+    stdin_open: true
+    tty: true
+
   db:
     image: mysql/mysql-server:8.0
     ports:
