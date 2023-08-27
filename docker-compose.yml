@@ -33,6 +33,18 @@ services:
     volumes:
       - ./volumes/apache/conf:/usr/local/apache2/conf
 
+  fastly:
+    build:
+      context: .
+      dockerfile: containers/fastly/Dockerfile
+    ports:
+      - 7676:7676
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./volumes/fastly:/app
+      - fastly-node-modules:/app/node_modules
+
   db:
     image: mysql/mysql-server:8.0
     ports:
@@ -58,4 +70,10 @@ volumes:
     driver_opts:
       type: none
       device: ${PWD}/volumes/web/node_modules
+      o: bind
+  fastly-node-modules:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/volumes/fastly/node_modules
       o: bind
