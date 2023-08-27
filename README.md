@@ -15,6 +15,7 @@ cd fastly-apache-rails
 
 ```bash
 mkdir volumes/web/node_modules
+mkdir volumes/fastly/node_modules
 ```
 
 #### 3. Dockerイメージをビルド
