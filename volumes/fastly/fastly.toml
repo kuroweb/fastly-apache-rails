@@ -1,0 +1,14 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+# localhost
+
+authors = ["kuroweb"]
+description = "fastly-apache-rails"
+language = "javascript"
+manifest_version = 3
+name = "fastly-apache-rails"
+
+[scripts]
+  build = "npm run build"
+  post_init = "npm install"
