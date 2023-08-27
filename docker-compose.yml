@@ -19,13 +19,8 @@ services:
     tty: true
     volumes:
       - ./volumes/web:/app
-      - node-modules:/app/node_modules
+      - web-node-modules:/app/node_modules
       - web-bundle:/usr/local/bundle
-    command: >
-      sh -c "
-        rm -f /app/tmp/pids/server.pid
-        rails s -b 0.0.0.0 -p 3000
-      "
 
   apache:
     build:
@@ -58,7 +53,7 @@ services:
 volumes:
   web-bundle:
   mysql-data:
-  node-modules:
+  web-node-modules:
     driver: local
     driver_opts:
       type: none
