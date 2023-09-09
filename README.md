@@ -29,3 +29,9 @@ docker compose build
 ```bash
 docker compose up -d
 ```
+
+## TODO
+
+- [x] コンテナ環境を構築する
+- [ ] fastly -> Apache -> Rails の経路でRailsアプリケーションに疎通させる
+- [ ] 動作検証
