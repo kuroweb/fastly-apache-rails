@@ -13,6 +13,7 @@ name = "fastly-apache-rails"
   build = "npm run build"
   post_init = "npm install"
 [local_server]
+  viceroy_version = "0.6.1"
   [local_server.backends]
     [local_server.backends.apache]
       url = "http://apache:80"
