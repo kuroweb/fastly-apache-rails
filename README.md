@@ -11,66 +11,44 @@ Fastlyは大きく分けて2つのサービスがある。
 
 ## Compute@Edgeの概要
 
-```uml
-@startuml
-participant Client as client
+```mermaid
+sequenceDiagram
+  participant client as Client
 
-box fastly
-participant C@E as c@e
-participant Cache as cache
-end box
+  box blue Fastly
+    participant c@e as C@E
+    participant cache as Cache
+  end
 
-box Rails
-participant Origin as origin
-end box
+  box red Origin
+    participant rails as Rails
+  end
 
-client->c@e:リクエスト
+  client->>c@e: リクエスト
+  activate c@e
+  c@e->>cache: Cacheの要求
+  activate cache
 
-activate c@e
+  alt Cacheがある場合
+    cache-->>c@e: Cacheの返却
+    c@e-->>client: レスポンス
+  else Cacheがない場合
+    cache->>rails: リクエスト
+    activate rails
+    rails-->>cache: レスポンス
+    deactivate rails
 
-c@e->cache:Cacheの要求
-
-activate cache
-
-note over of cache
-Cacheがある場合
-end note
-
-cache->c@e:Cacheの返却
-c@e->client:レスポンス
-
-note over of cache
-Cacheが無い場合
-end note
-
-cache->origin:リクエスト
-
-activate origin
-
-origin->cache:レスポンス
-
-deactivate origin
-
-note over of cache
-Cacheしない場合
-end note
-
-cache->c@e:コンテンツを返却
-c@e->client:レスポンス
-
-note over of cache
-Cacheを作成
-end note
-
-cache->c@e:Cacheの返却
-
-deactivate cache
-
-c@e->client:レスポンス
-
-deactivate c@e
-
-@enduml
+    alt Cacheしない場合
+      cache-->>c@e: コンテンツを返却
+      c@e-->>client: レスポンス
+    else Cacheする場合
+      cache --> cache: キャッシュを作成
+      cache-->>c@e: コンテンツを返却
+      deactivate cache
+      c@e-->>client: レスポンス
+      deactivate c@e
+    end
+  end
 ```
 
 ## Installation
