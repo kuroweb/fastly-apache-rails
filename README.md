@@ -81,6 +81,9 @@ docker compose up -d
 
 ## TODO
 
-- [x] コンテナ環境を構築する
-- [x] fastly -> Apache -> Rails の経路でRailsアプリケーションに疎通させる
-- [ ] 動作検証
+- ✅ コンテナ環境を構築する
+- ✅ fastly -> Apache -> Rails の経路でRailsアプリケーションに疎通させる
+- 🏃‍ 動作検証
+  - 🏃‍ Cacheがある場合
+  - Cacheがない場合 -> Cacheしない場合
+  - Cacheがない場合 -> Cacheする場合
