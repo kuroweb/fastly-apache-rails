@@ -11,6 +11,11 @@ module App
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.paths.add "lib", eager_load: true
+    Dir["#{Rails.root}/lib/**/*.rb"].each { |file| require file }
+
+    config.middleware.insert_before 0, Rack::CacheControl
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
