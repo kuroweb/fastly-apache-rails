@@ -1,4 +1,4 @@
-const disableDownstreamCache = () => {
+const disableDownstreamCache = (response) => {
   response.headers.set('cache-control', 'max-age=0, no-cache, no-store')
   response.headers.set('pragma', 'no-cache')
   const date = response.headers.get('date')
