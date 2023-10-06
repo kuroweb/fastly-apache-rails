@@ -8,7 +8,7 @@ const disableDownstreamCache = (response) => {
   response.headers.delete('age')
 }
 
-handleRequest = async (event) => {
+const handleRequest = async (event) => {
   let request, response, client
 
   try {
