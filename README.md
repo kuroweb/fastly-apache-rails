@@ -87,3 +87,18 @@ docker compose up -d
   - Cacheがある場合
   - Cacheがない場合 -> Cacheしない場合
   - 🏃‍ Cacheがない場合 -> Cacheする場合
+- EC2にApache + Railsをデプロイ
+- Compute@Edgeにデプロイする
+- Compute@EdgeへのデプロイをTerraformで管理する
+
+## NOTE
+
+ローカルテストではキャッシュが動作してくれない…。
+
+- document: [Constraints and limitations](https://developer.fastly.com/learning/compute/testing/#constraints-and-limitations-1)
+
+そのため、`このリクエストはキャッシュされたからオリジンへのリクエストはないよね？`といった動作テストはローカルでは行えない。
+
+ヘッダー情報が想定通りにコントロールできているのか？リクエストの疎通に問題ないか？などの観点で利用すると良い。
+
+`このリクエストはキャッシュされたからオリジンへのリクエストはないよね？`を検証したい場合は、[Compute@Edgeの無料枠](https://docs.fastly.com/ja/guides/account-types?_fsi=YEHmEZXH&_fsi=YEHmEZXH)を利用してデプロイするしかない。
